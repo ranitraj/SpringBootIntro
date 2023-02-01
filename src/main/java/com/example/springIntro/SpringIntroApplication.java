@@ -12,26 +12,10 @@ import java.time.Month;
 import java.util.List;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
-@RestController
-//The Annotation @RestController makes the current class 'Serve' the REST endpoints defined in this class
 public class SpringIntroApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIntroApplication.class, args);
-	}
-
-	// The annotation @GetMapping is the GET call for the REST API Endpoint 'hello()'
-	@GetMapping
-	public List<Student> getStudentsList() {
-		return List.of(
-				new Student(
-						1L,
-						"Ranit",
-						LocalDate.of(1996, Month.AUGUST, 5),
-						25,
-						"ranitrajganguly@gmail.com"
-				)
-		);
 	}
 
 }
