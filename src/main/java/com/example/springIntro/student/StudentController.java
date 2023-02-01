@@ -9,22 +9,21 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+/**
+ * API Layer
+ */
 @RestController
 @RequestMapping(path = "api/v1/studentList")
 //The Annotation @RestController makes the current class 'Serve' the REST endpoints defined in this class
 public class StudentController {
+    private final StudentService studentService;
 
-    // The annotation @GetMapping is the GET call for the REST API Endpoint 'hello()'
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
     @GetMapping
     public List<Student> getStudentList() {
-        return List.of(
-                new Student(
-                        1L,
-                        "Ranit",
-                        LocalDate.of(1996, Month.AUGUST, 5),
-                        25,
-                        "ranitrajganguly@gmail.com"
-                )
-        );
+        return studentService.getStudentList();
     }
 }
