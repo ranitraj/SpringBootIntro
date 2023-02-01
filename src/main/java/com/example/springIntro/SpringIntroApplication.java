@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+@SpringBootApplication
 public class SpringIntroApplication {
 
 	public static void main(String[] args) {
