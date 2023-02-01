@@ -16,7 +16,7 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
-    private long id;
+    private Long id;
     private String name;
     private LocalDate dob;
     private Integer age;
