@@ -19,6 +19,9 @@ public class Student {
     private Long id;
     private String name;
     private LocalDate dob;
+
+    // The @Transient keyword does NOT make this parameter as a column in the table
+    @Transient
     private Integer age;
     private String email;
 
@@ -29,25 +32,21 @@ public class Student {
             long id,
             String name,
             LocalDate dob,
-            Integer age,
             String email
     ) {
         this.id = id;
         this.name = name;
         this.dob = dob;
-        this.age = age;
         this.email = email;
     }
 
     public Student(
             String name,
             LocalDate dob,
-            Integer age,
             String email
     ) {
         this.name = name;
         this.dob = dob;
-        this.age = age;
         this.email = email;
     }
 

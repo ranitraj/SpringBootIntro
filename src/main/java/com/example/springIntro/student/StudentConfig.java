@@ -23,7 +23,6 @@ public class StudentConfig {
             Student ranit = new Student(
                     "Ranit Raj Ganguly",
                     LocalDate.of(1996, Month.AUGUST, 29),
-                    25,
                     "ranitrajganguly@gmail.com"
             );
 
@@ -31,7 +30,6 @@ public class StudentConfig {
             Student anvesh = new Student(
                     "Anvesh Rao Kosuru",
                     LocalDate.of(1994, Month.NOVEMBER, 30),
-                    27,
                     "ark.anvesh@gmail.com"
             );
 
