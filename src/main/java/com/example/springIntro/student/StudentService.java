@@ -45,4 +45,10 @@ public class StudentService {
             );
         }
     }
+
+    public void updateStudent(
+            Long studentId,
+            String name,
+            String email) {
+    }
 }
