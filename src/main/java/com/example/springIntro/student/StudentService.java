@@ -3,7 +3,9 @@ package com.example.springIntro.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -46,9 +48,39 @@ public class StudentService {
         }
     }
 
+    /**
+     * The @Transactional keyword handles all updates to the DB.
+     * We need to update the student object we obtained from the DB using the setter
+     */
+    @Transactional
     public void updateStudent(
             Long studentId,
             String name,
             String email) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Student with id " + studentId + " does not exist!")
+        );
+
+        // Validations for name and email
+        if (name != null
+                && !name.isEmpty()
+                && !Objects.equals(student.getName(), name)) {
+            // For updating 'student' object in DB using @Transactional
+            student.setName(name);
+        }
+
+        if (email != null
+                && !email.isEmpty()
+                && !Objects.equals(student.getEmail(), email)) {
+            // Additional check to verify if new email is taken or not
+            Optional<Student> studentOptional = studentRepository
+                    .findStudentByEmail(email);
+            if (studentOptional.isPresent()) {
+                throw new IllegalStateException("Email taken");
+            }
+            // Update
+            student.setEmail(email);
+        }
     }
 }
