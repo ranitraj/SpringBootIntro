@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The SERVICE Layer handling the Business Logic.
@@ -23,5 +24,14 @@ public class StudentService {
     }
 
     public void addNewStudent(Student student) {
+        // Verifying if an entry with the same email exists in DB
+        Optional<Student> studentOptional = studentRepository
+                .findStudentByEmail(student.getEmail());
+
+        if (studentOptional.isPresent()) {
+            throw  new IllegalStateException("Email taken");
+        }
+        // Save the Student in DB
+        studentRepository.save(student);
     }
 }
