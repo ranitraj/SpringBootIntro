@@ -2,9 +2,7 @@ package com.example.springIntro.student;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -34,5 +32,10 @@ public class StudentController {
     @GetMapping
     public List<Student> getStudentList() {
         return studentService.getStudentList();
+    }
+
+    @PostMapping
+    public void registerStudent(@RequestBody Student student) {
+        studentService.addNewStudent(student);
     }
 }
